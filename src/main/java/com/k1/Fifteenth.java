@@ -10,12 +10,12 @@ public class Fifteenth {
    int[] oppMoves = new int[] {2, 3, 0, 1};
 
    int x0, y0;
-   int[] xF, yF = new int[16];
+   int[] xF = new int[16], yF = new int[16];
    static int[][] board = new int[4][4], targBoard = new int[4][4];
    int deep, minPrevIter;
    int step;
 
-   String result;
+   String result = "";
 
    void InitCond() {
        for (int i = 0; i < 15; i++) {
@@ -42,11 +42,12 @@ public class Fifteenth {
 
        for (int i = 0; i < 4; i++) {
            if (i % 2 == 0) {
-               for (int j = 0; j < 4; j++)
+               for (int j = 0; j < 4; j++) {
                    value = board[i][j];
-               if (value > 0) {
-                   tester[count] = value;
-                   count++;
+                   if (value > 0) {
+                       tester[count] = value;
+                       count++;
+                   }
                }
            } else
                for (int j = 3; j >= 0; j--) {
@@ -142,6 +143,7 @@ public class Fifteenth {
    }
 
    Fifteenth(ArrayList<Integer> digits) {
+       InitCond();
        board[0][0] = digits.get(0);
        board[0][1] = digits.get(1);
        board[0][2] = digits.get(2);
@@ -160,7 +162,7 @@ public class Fifteenth {
        board[3][0] = digits.get(12);
        board[3][1] = digits.get(13);
        board[3][2] = digits.get(14);
-       board[3][3] = 0;
+       board[3][3] = digits.get(15);
 
        targBoard[0][0] = 1;
        targBoard[0][1] = 2;
@@ -184,9 +186,11 @@ public class Fifteenth {
    }
 
    String Solve() {
-       if (!CanItSolve()) return "It's not possible";
-       if (Outlay() == 0) return "It's already solved!";
-       if (IdaS()) return "Solver successfully solved your problem. Way: " + result + "in " + step + " steps"; else
+       if (!CanItSolve()) return "It's not possible"; else
+       if (Outlay() == 0) return "It's already solved!"; else
+       if (IdaS())
+           return "Solver successfully solved your problem. Way: " + new StringBuilder(result).reverse().toString() + " in " + step + " steps";
+       else
            return "IDA* failed";
    }
 }
