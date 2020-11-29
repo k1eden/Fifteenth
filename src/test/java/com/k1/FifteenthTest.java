@@ -61,7 +61,7 @@ class FifteenthTest {
 
         Fifteenth tester = new Fifteenth(test);
 
-        assertEquals("Solver successfully solved your problem. Way: SDDWAASSDWWDSAAWDDDSAAWDDSAWASSDD in 33 steps",tester.Solve());
+        assertEquals("Solver successfully solved your problem. Way: SDDWAASSDWWDSAAWDDDSAAWDDSAWASSDD in 33 step(s)",tester.Solve());
 
         ArrayList<Integer> test1 = new ArrayList<Integer>(15);
         test1.add(0,15);
@@ -86,7 +86,7 @@ class FifteenthTest {
 
         Fifteenth tester1 = new Fifteenth(test1);
 
-       assertEquals("Solver successfully solved your problem. Way: AAAWWWDSSAWDSASDWDWDWASDSSAAWWDDWAAASDWDSASDDS in 46 steps", tester1.Solve());
+       assertEquals("Solver successfully solved your problem. Way: AAAWWWDSSAWDSASDWDWDWASDSSAAWWDDWAAASDWDSASDDS in 46 step(s)", tester1.Solve());
 
         ArrayList<Integer> test2 = new ArrayList<Integer>(15);
         test2.add(0,1);
@@ -136,6 +136,33 @@ class FifteenthTest {
 
         Fifteenth tester3 = new Fifteenth(test3);
 
-        assertEquals("Solver successfully solved your problem. Way: AAWWASDDWAWASSDDDWAAWASSDDWWDSSAWWASASDSDDWASD in 46 steps", tester3.Solve());
+        assertEquals("Solver successfully solved your problem. Way: AAWWASDDWAWASSDDDWAAWASSDDWWDSSAWWASASDSDDWASD in 46 step(s)", tester3.Solve());
+
+   //   ArrayList<Integer> test4 = new ArrayList<Integer>(15);
+   //  test4.add(0,2);
+   //  test4.add(1,15);
+   //  test4.add(2,12);
+   //  test4.add(3,7);
+
+   //  test4.add(4,4);
+   //  test4.add(5,1);
+   //  test4.add(6,5);
+   //  test4.add(7,8);
+
+   //  test4.add(8,3);
+   //  test4.add(9,10);
+   //  test4.add(10,6);
+   //  test4.add(11,9);
+
+   //  test4.add(12,13);
+   //  test4.add(13,14);
+   //  test4.add(14,11);
+   //  test4.add(15,-1);
+
+
+   //  Fifteenth tester4 = new Fifteenth(test4);
+
+   //  assertEquals("You should to write all digits!", tester4.Solve());
+        // Проверка на "Убийство" процесса при некорректно заданном на вход списке.
     }
 }

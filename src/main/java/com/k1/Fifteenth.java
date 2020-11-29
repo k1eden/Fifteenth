@@ -11,21 +11,13 @@ public class Fifteenth {
 
    int x0, y0;
    int[] xF = new int[16], yF = new int[16];
-   static int[][] board = new int[4][4], targBoard = new int[4][4];
+   int[][] board = new int[4][4], targBoard = new int[4][4];
    int deep, minPrevIter;
    int step;
 
    String result = "";
 
-   void InitCond() {
-       for (int i = 0; i < 15; i++) {
-           xF[i+1] = i % 4;
-           yF[i+1] = i / 4;
-       }
 
-       xF[0] = 4;
-       yF[0] = 4;
-   }
 
    void Swap(int x1, int y1, int x2, int y2) {
        int swapAssistant = board[x1][y1];
@@ -143,53 +135,72 @@ public class Fifteenth {
    }
 
    Fifteenth(ArrayList<Integer> digits) {
-       InitCond();
-       board[0][0] = digits.get(0);
-       board[0][1] = digits.get(1);
-       board[0][2] = digits.get(2);
-       board[0][3] = digits.get(3);
+       for (int i = 0; i < 15; i++) {
+           xF[i+1] = i % 4;
+           yF[i+1] = i / 4;
+       }
 
-       board[1][0] = digits.get(4);
-       board[1][1] = digits.get(5);
-       board[1][2] = digits.get(6);
-       board[1][3] = digits.get(7);
+       xF[0] = 4;
+       yF[0] = 4;
 
-       board[2][0] = digits.get(8);
-       board[2][1] = digits.get(9);
-       board[2][2] = digits.get(10);
-       board[2][3] = digits.get(11);
+       if (digits.size() != 16) {
+           System.out.println("Your list size should be 16!");
+           System.exit(0);
+       }
 
-       board[3][0] = digits.get(12);
-       board[3][1] = digits.get(13);
-       board[3][2] = digits.get(14);
-       board[3][3] = digits.get(15);
+       for (int i = 0; i < 16; i++) {
+           if (digits.get(i) < 0 || digits.get(i) > 15) {
+               System.out.println("Your numbers should be in the range of 0-15");
+               System.exit(0);
+           }
+       }
 
-       targBoard[0][0] = 1;
-       targBoard[0][1] = 2;
-       targBoard[0][2] = 3;
-       targBoard[0][3] = 4;
+           board[0][0] = digits.get(0);
+           board[0][1] = digits.get(1);
+           board[0][2] = digits.get(2);
+           board[0][3] = digits.get(3);
 
-       targBoard[1][0] = 5;
-       targBoard[1][1] = 6;
-       targBoard[1][2] = 7;
-       targBoard[1][3] = 8;
+           board[1][0] = digits.get(4);
+           board[1][1] = digits.get(5);
+           board[1][2] = digits.get(6);
+           board[1][3] = digits.get(7);
 
-       targBoard[2][0] = 9;
-       targBoard[2][1] = 10;
-       targBoard[2][2] = 11;
-       targBoard[2][3] = 12;
+           board[2][0] = digits.get(8);
+           board[2][1] = digits.get(9);
+           board[2][2] = digits.get(10);
+           board[2][3] = digits.get(11);
 
-       targBoard[3][0] = 13;
-       targBoard[3][1] = 14;
-       targBoard[3][2] = 15;
-       targBoard[3][3] = 0;
+           board[3][0] = digits.get(12);
+           board[3][1] = digits.get(13);
+           board[3][2] = digits.get(14);
+           board[3][3] = digits.get(15);
+
+           targBoard[0][0] = 1;
+           targBoard[0][1] = 2;
+           targBoard[0][2] = 3;
+           targBoard[0][3] = 4;
+
+           targBoard[1][0] = 5;
+           targBoard[1][1] = 6;
+           targBoard[1][2] = 7;
+           targBoard[1][3] = 8;
+
+           targBoard[2][0] = 9;
+           targBoard[2][1] = 10;
+           targBoard[2][2] = 11;
+           targBoard[2][3] = 12;
+
+           targBoard[3][0] = 13;
+           targBoard[3][1] = 14;
+           targBoard[3][2] = 15;
+           targBoard[3][3] = 0;
    }
 
    String Solve() {
-       if (!CanItSolve()) return "It's not possible"; else
-       if (Outlay() == 0) return "It's already solved!"; else
-       if (IdaS())
-           return "Solver successfully solved your problem. Way: " + new StringBuilder(result).reverse().toString() + " in " + step + " steps";
+       if (!CanItSolve()) return "It's not possible";
+       else if (Outlay() == 0) return "It's already solved!";
+       else if (IdaS())
+           return "Solver successfully solved your problem. Way: " + new StringBuilder(result).reverse().toString() + " in " + step + " step(s)";
        else
            return "IDA* failed";
    }
