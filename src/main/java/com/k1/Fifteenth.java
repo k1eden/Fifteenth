@@ -17,7 +17,7 @@ public class Fifteenth {
    int step;
    HashSet<Integer> values = new HashSet<>();
 
-    String result = "";
+   StringBuilder result = new StringBuilder();
 
 
 
@@ -103,7 +103,7 @@ public class Fifteenth {
                    swap(y0, x0, ny, nx);
 
                    if (res) {
-                       result += possMoves[i];
+                       result.append(possMoves[i]);
                        step++;
                        return true;
                    }
@@ -198,7 +198,7 @@ public class Fifteenth {
        if (!canItSolve()) return "It's not possible";
        else if (outlay() == 0) return "It's already solved!";
        else if (idaS())
-           return "Solver successfully solved your problem. Way: " + new StringBuilder(result).reverse().toString() + " in " + step + " step(s)";
+           return "Solver successfully solved your problem. Way: " + result.reverse().toString() + " in " + step + " step(s)";
        else
            return "IDA* failed";
    }
