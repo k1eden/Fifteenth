@@ -1,6 +1,7 @@
 package com.k1;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Fifteenth {
    int[] dx = new int[] {0, -1, 0, 1};
@@ -14,12 +15,13 @@ public class Fifteenth {
    int[][] board = new int[4][4], targBoard = new int[4][4];
    int deep, minPrevIter;
    int step;
+   HashSet<Integer> values = new HashSet<>();
 
-   String result = "";
+    String result = "";
 
 
 
-   void Swap(int x1, int y1, int x2, int y2) {
+   private void swap(int x1, int y1, int x2, int y2) {
        int swapAssistant = board[x1][y1];
        int swapAssistant1 = board[x2][y2];
 
@@ -27,8 +29,8 @@ public class Fifteenth {
        board[x2][y2] = swapAssistant;
    }
 
-    boolean CanItSolve() {
-       int count = 0, transPos = 0, value = 0;
+   public boolean canItSolve() {
+       int count = 0, transPos = 0, value;
        int[] tester = new int[17];
        boolean canDoIt = false;
 
@@ -60,7 +62,7 @@ public class Fifteenth {
       return canDoIt;
    }
 
-   Integer Outlay() {
+   private int outlay() {
        int manhattan = 0;
        int value;
        int x;
@@ -77,8 +79,8 @@ public class Fifteenth {
         return manhattan;
    }
 
-   Boolean Search(int g, int prevMove, int x0, int y0) {
-       int h = Outlay();
+   private boolean search(int g, int prevMove, int x0, int y0) {
+       int h = outlay();
 
        if (h == 0) return true;
 
@@ -96,9 +98,9 @@ public class Fifteenth {
                ny = y0 + dy[i];
 
                if (ny <= 3 && ny >= 0 && nx <=3 && nx >= 0) {
-                   Swap(y0, x0, ny, nx);
-                   boolean res = Search(g + 1, i, nx, ny);
-                   Swap(y0, x0, ny, nx);
+                   swap(y0, x0, ny, nx);
+                   boolean res = search(g + 1, i, nx, ny);
+                   swap(y0, x0, ny, nx);
 
                    if (res) {
                        result += possMoves[i];
@@ -111,8 +113,8 @@ public class Fifteenth {
        return false;
    }
 
-   boolean IdaS() {
-       deep = Outlay();
+   private boolean idaS() {
+       deep = outlay();
        boolean res = false;
 
        while (deep <= 50) {
@@ -126,7 +128,7 @@ public class Fifteenth {
                    }
                }
            step = 0;
-                res = Search(0, -1, x0, y0);
+                res = search(0, -1, x0, y0);
                deep = minPrevIter;
 
                if (res) break;
@@ -134,7 +136,7 @@ public class Fifteenth {
        return res;
    }
 
-   Fifteenth(ArrayList<Integer> digits) {
+   public Fifteenth(ArrayList<Integer> digits) {
        for (int i = 0; i < 15; i++) {
            xF[i+1] = i % 4;
            yF[i+1] = i / 4;
@@ -143,17 +145,7 @@ public class Fifteenth {
        xF[0] = 4;
        yF[0] = 4;
 
-       if (digits.size() != 16) {
-           System.out.println("Your list size should be 16!");
-           System.exit(0);
-       }
-
-       for (int i = 0; i < 16; i++) {
-           if (digits.get(i) < 0 || digits.get(i) > 15) {
-               System.out.println("Your numbers should be in the range of 0-15");
-               System.exit(0);
-           }
-       }
+       values.addAll(digits);
 
            board[0][0] = digits.get(0);
            board[0][1] = digits.get(1);
@@ -196,10 +188,16 @@ public class Fifteenth {
            targBoard[3][3] = 0;
    }
 
-   String Solve() {
-       if (!CanItSolve()) return "It's not possible";
-       else if (Outlay() == 0) return "It's already solved!";
-       else if (IdaS())
+   public String solve() {
+       HashSet<Integer> values1 = new HashSet<>();
+       for (int i = 0; i < 16; i++)
+           values1.add(i);
+
+       if (!values.containsAll(values1) || values.size() != 16) return "incorrect format"; else
+
+       if (!canItSolve()) return "It's not possible";
+       else if (outlay() == 0) return "It's already solved!";
+       else if (idaS())
            return "Solver successfully solved your problem. Way: " + new StringBuilder(result).reverse().toString() + " in " + step + " step(s)";
        else
            return "IDA* failed";

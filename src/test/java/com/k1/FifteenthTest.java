@@ -33,7 +33,7 @@ class FifteenthTest {
         test.add(15,0);
 
         Fifteenth tester = new Fifteenth(test);
-        assertTrue(tester.CanItSolve());
+        assertTrue(tester.canItSolve());
     }
 
     @Test
@@ -61,7 +61,7 @@ class FifteenthTest {
 
         Fifteenth tester = new Fifteenth(test);
 
-        assertEquals("Solver successfully solved your problem. Way: SDDWAASSDWWDSAAWDDDSAAWDDSAWASSDD in 33 step(s)",tester.Solve());
+        assertEquals("Solver successfully solved your problem. Way: SDDWAASSDWWDSAAWDDDSAAWDDSAWASSDD in 33 step(s)",tester.solve());
 
         ArrayList<Integer> test1 = new ArrayList<Integer>(15);
         test1.add(0,15);
@@ -86,7 +86,7 @@ class FifteenthTest {
 
         Fifteenth tester1 = new Fifteenth(test1);
 
-       assertEquals("Solver successfully solved your problem. Way: AAAWWWDSSAWDSASDWDWDWASDSSAAWWDDWAAASDWDSASDDS in 46 step(s)", tester1.Solve());
+       assertEquals("Solver successfully solved your problem. Way: AAAWWWDSSAWDSASDWDWDWASDSSAAWWDDWAAASDWDSASDDS in 46 step(s)", tester1.solve());
 
         ArrayList<Integer> test2 = new ArrayList<Integer>(15);
         test2.add(0,1);
@@ -111,7 +111,7 @@ class FifteenthTest {
 
         Fifteenth tester2 = new Fifteenth(test2);
 
-        assertEquals("It's already solved!", tester2.Solve());
+        assertEquals("It's already solved!", tester2.solve());
 
         ArrayList<Integer> test3 = new ArrayList<Integer>(15);
         test3.add(0,2);
@@ -136,33 +136,84 @@ class FifteenthTest {
 
         Fifteenth tester3 = new Fifteenth(test3);
 
-        assertEquals("Solver successfully solved your problem. Way: AAWWASDDWAWASSDDDWAAWASSDDWWDSSAWWASASDSDDWASD in 46 step(s)", tester3.Solve());
+        assertEquals("Solver successfully solved your problem. Way: AAWWASDDWAWASSDDDWAAWASSDDWWDSSAWWASASDSDDWASD in 46 step(s)", tester3.solve());
 
-   //   ArrayList<Integer> test4 = new ArrayList<Integer>(15);
-   //  test4.add(0,2);
-   //  test4.add(1,15);
-   //  test4.add(2,12);
-   //  test4.add(3,7);
+      ArrayList<Integer> test6 = new ArrayList<Integer>(15);
+      test6.add(0,2);
+      test6.add(1,15);
+      test6.add(2,12);
+      test6.add(3,7);
 
-   //  test4.add(4,4);
-   //  test4.add(5,1);
-   //  test4.add(6,5);
-   //  test4.add(7,8);
+      test6.add(4,4);
+      test6.add(5,1);
+      test6.add(6,5);
+      test6.add(7,8);
 
-   //  test4.add(8,3);
-   //  test4.add(9,10);
-   //  test4.add(10,6);
-   //  test4.add(11,9);
+      test6.add(8,3);
+      test6.add(9,10);
+      test6.add(10,6);
+      test6.add(11,9);
 
-   //  test4.add(12,13);
-   //  test4.add(13,14);
-   //  test4.add(14,11);
-   //  test4.add(15,-1);
+      test6.add(12,13);
+      test6.add(13,14);
+      test6.add(14,11);
+      test6.add(15,-1);
 
 
-   //  Fifteenth tester4 = new Fifteenth(test4);
+      Fifteenth tester6 = new Fifteenth(test6);
 
-   //  assertEquals("You should to write all digits!", tester4.Solve());
-        // Проверка на "Убийство" процесса при некорректно заданном на вход списке.
+      assertEquals("incorrect format", tester6.solve());
+
+        ArrayList<Integer> test4 = new ArrayList<Integer>(15);
+        test4.add(0,2);
+        test4.add(1,15);
+        test4.add(2,12);
+        test4.add(3,7);
+
+        test4.add(4,4);
+        test4.add(5,1);
+        test4.add(6,5);
+        test4.add(7,8);
+
+        test4.add(8,3);
+        test4.add(9,10);
+        test4.add(10,6);
+        test4.add(11,9);
+
+        test4.add(12,13);
+        test4.add(13,14);
+        test4.add(14,11);
+        test4.add(15,0);
+
+        test4.add(16,20);
+
+        Fifteenth tester4 = new Fifteenth(test4);
+
+        assertEquals("incorrect format", tester4.solve());
+
+        ArrayList<Integer> test5 = new ArrayList<Integer>(15);
+        test5.add(0,2);
+        test5.add(1,15);
+        test5.add(2,12);
+        test5.add(3,7);
+
+        test5.add(4,4);
+        test5.add(5,1);
+        test5.add(6,5);
+        test5.add(7,8);
+
+        test5.add(8,3);
+        test5.add(9,100);
+        test5.add(10,6);
+        test5.add(11,9);
+
+        test5.add(12,13);
+        test5.add(13,14);
+        test5.add(14,11);
+        test5.add(15,0);
+
+        Fifteenth tester5 = new Fifteenth(test5);
+
+        assertEquals("incorrect format", tester5.solve());
     }
 }
