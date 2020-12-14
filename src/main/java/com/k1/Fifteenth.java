@@ -1,23 +1,24 @@
 package com.k1;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.*;
 
 public class Fifteenth {
-   int[] dx = new int[] {0, -1, 0, 1};
-   int[] dy = new int[] {1, 0, -1, 0};
+  private final int[] dx = new int[] {0, -1, 0, 1};
+  private final int[] dy = new int[] {1, 0, -1, 0};
 
-   char[] possMoves = new char[] {'S', 'A', 'W', 'D'};
-   int[] oppMoves = new int[] {2, 3, 0, 1};
+  private final char[] possMoves = new char[] {'S', 'A', 'W', 'D'};
+  private final int[] oppMoves = new int[] {2, 3, 0, 1};
 
-   int x0, y0;
-   int[] xF = new int[16], yF = new int[16];
-   int[][] board = new int[4][4], targBoard = new int[4][4];
-   int deep, minPrevIter;
-   int step;
-   HashSet<Integer> values = new HashSet<>();
-
-   StringBuilder result = new StringBuilder();
+  private int x0, y0;
+  private final int[] xF = new int[16];
+    private final int[] yF = new int[16];
+  private final int[][] board = new int[4][4];
+    private final int[][] targBoard = new int[4][4];
+  private int deep, minPrevIter;
+  private int step;
+  private final HashSet<Integer> values = new HashSet<>();
+  private final List<Integer> sizeChecker = new ArrayList<>();
+  private final StringBuilder result = new StringBuilder();
 
 
 
@@ -146,6 +147,7 @@ public class Fifteenth {
        yF[0] = 4;
 
        values.addAll(digits);
+       sizeChecker.addAll(digits);
 
            board[0][0] = digits.get(0);
            board[0][1] = digits.get(1);
@@ -193,7 +195,7 @@ public class Fifteenth {
        for (int i = 0; i < 16; i++)
            values1.add(i);
 
-       if (!values.containsAll(values1) || values.size() != 16) return "incorrect format"; else
+       if (!values.containsAll(values1) || sizeChecker.size() != 16) return "incorrect format"; else
 
        if (!canItSolve()) return "It's not possible";
        else if (outlay() == 0) return "It's already solved!";
