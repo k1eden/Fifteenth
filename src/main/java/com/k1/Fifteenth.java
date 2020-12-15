@@ -13,9 +13,9 @@ public class Fifteenth {
   private final int[] xF = new int[16];
     private final int[] yF = new int[16];
   private final int[][] board = new int[4][4];
-    private final int[][] targBoard = new int[4][4];
+    private final static int[][] targBoard = new int[4][4];
   private int deep, minPrevIter;
-  private int step;
+  int step;
   private final HashSet<Integer> values = new HashSet<>();
   private final List<Integer> sizeChecker = new ArrayList<>();
   private final StringBuilder result = new StringBuilder();
@@ -98,7 +98,7 @@ public class Fifteenth {
                nx = x0 + dx[i];
                ny = y0 + dy[i];
 
-               if (ny <= 3 && ny >= 0 && nx <=3 && nx >= 0) {
+               if (ny <= 3 && ny >= 0 && nx <= 3 && nx >= 0) {
                    swap(y0, x0, ny, nx);
                    boolean res = search(g + 1, i, nx, ny);
                    swap(y0, x0, ny, nx);
@@ -117,8 +117,9 @@ public class Fifteenth {
    private boolean idaS() {
        deep = outlay();
        boolean res = false;
+       final int MAX_TURNS = 50;
 
-       while (deep <= 50) {
+       while (deep <= MAX_TURNS) {
            minPrevIter = Integer.MAX_VALUE;
 
            for (int i = 0; i < 4; i++)
@@ -190,18 +191,19 @@ public class Fifteenth {
            targBoard[3][3] = 0;
    }
 
-   public String solve() {
+   public char[] solve() throws Exception {
        HashSet<Integer> values1 = new HashSet<>();
        for (int i = 0; i < 16; i++)
            values1.add(i);
 
-       if (!values.containsAll(values1) || sizeChecker.size() != 16) return "incorrect format"; else
+       if (!values.containsAll(values1) || sizeChecker.size() != 16)
+           throw new IllegalArgumentException("incorrect format");
 
-       if (!canItSolve()) return "It's not possible";
-       else if (outlay() == 0) return "It's already solved!";
+       if (!canItSolve()) throw new Exception("It's not possible");
+       else if (outlay() == 0) return new char[0];
        else if (idaS())
-           return "Solver successfully solved your problem. Way: " + result.reverse().toString() + " in " + step + " step(s)";
+           return result.reverse().toString().toCharArray();
        else
-           return "IDA* failed";
+           throw new Exception("IDA* failed");
    }
 }
