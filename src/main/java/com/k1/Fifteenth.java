@@ -117,7 +117,7 @@ public class Fifteenth {
    private boolean idaS() {
        deep = outlay();
        boolean res = false;
-       final int MAX_TURNS = 50;
+       final int MAX_TURNS = 80;
 
        while (deep <= MAX_TURNS) {
            minPrevIter = Integer.MAX_VALUE;

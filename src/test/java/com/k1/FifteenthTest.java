@@ -63,36 +63,42 @@ class FifteenthTest {
         Fifteenth tester = new Fifteenth(test);
 
         char[] help =
-    {'S','D','D','W','A','A','S','S','D','W','W','D','S','A','A','W','D','D','D','S','A','A','W','D','D','S','A','W','A','S','S','D','D'};
+    {'S','D','D','W','A','A','S','S','D','W','W','D','S','A','A','W','D','D','D','S','A','A','W',
+            'D','D','S','A','W','A','S','S','D','D'};
 
         int help1 = help.length;
-       assertTrue(Arrays.equals(help, tester.solve()));
-       assertEquals(tester.step, help1);
+      assertTrue(Arrays.equals(help, tester.solve()));
+      assertEquals(tester.step, help1);
 
-    //   ArrayList<Integer> test1 = new ArrayList<Integer>(15);
-    //   test1.add(0,15);
-    //   test1.add(1,7);
-    //   test1.add(2,8);
-    //   test1.add(3,5);
+       ArrayList<Integer> test1 = new ArrayList<Integer>(15);
+       test1.add(0,12);
+       test1.add(1,13);
+       test1.add(2,3);
+       test1.add(3,4);
 
-    //   test1.add(4,6);
-    //   test1.add(5,2);
-    //   test1.add(6,10);
-    //   test1.add(7,4);
+       test1.add(4,6);
+       test1.add(5,1);
+       test1.add(6,10);
+       test1.add(7,2);
 
-    //   test1.add(8,9);
-    //   test1.add(9,1);
-    //   test1.add(10,14);
-    //   test1.add(11,3);
+       test1.add(8,8);
+       test1.add(9,5);
+       test1.add(10,11);
+       test1.add(11,9);
 
-    //   test1.add(12,13);
-    //   test1.add(13,12);
-    //   test1.add(14,11);
-    //   test1.add(15,0);
+       test1.add(12,0);
+       test1.add(13,15);
+       test1.add(14,14);
+       test1.add(15,7);
 
-    //   Fifteenth tester1 = new Fifteenth(test1);
+       Fifteenth tester1 = new Fifteenth(test1);
+        char[] help2 =
+    {'W','W','W','D','S','D','D','W','A','S','A','A','W','D','D','D','S','A','S','D','W','A','A',
+            'S','A','W','D','S','D','S','A','A','W','D','D',
+            'D','S','A','A','W','D','W','D','S','A','S','D',
+            'W','A','W','D','S','S'};
 
-    //  assertEquals("Solver successfully solved your problem. Way: AAAWWWDSSAWDSASDWDWDWASDSSAAWWDDWAAASDWDSASDDS in 46 step(s)", tester1.solve());
+        assertTrue(Arrays.equals(help2, tester1.solve()));
 
       ArrayList<Integer> test2 = new ArrayList<Integer>(15);
       test2.add(0,1);
