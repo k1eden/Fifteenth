@@ -13,28 +13,28 @@ class FifteenthTest {
     @Test
     void canItSolve() {
         ArrayList<Integer> test = new ArrayList<Integer>(15);
-        test.add(0,10);
-        test.add(1,14);
-        test.add(2,11);
-        test.add(3,9);
+        test.add(0,1);
+        test.add(1,2);
+        test.add(2,3);
+        test.add(3,4);
 
-        test.add(4,8);
-        test.add(5,12);
-        test.add(6,1);
-        test.add(7,5);
+        test.add(4,5);
+        test.add(5,6);
+        test.add(6,7);
+        test.add(7,8);
 
-        test.add(8,7);
-        test.add(9,4);
-        test.add(10,13);
-        test.add(11,6);
+        test.add(8,9);
+        test.add(9,10);
+        test.add(10,11);
+        test.add(11,12);
 
-        test.add(12,2);
-        test.add(13,3);
-        test.add(14,15);
+        test.add(12,13);
+        test.add(13,15);
+        test.add(14,14);
         test.add(15,0);
 
         Fifteenth tester = new Fifteenth(test);
-        assertTrue(tester.canItSolve());
+        assertFalse(tester.canItSolve());
     }
 
     @Test

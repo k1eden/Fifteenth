@@ -19,6 +19,7 @@ public class Fifteenth {
   private final HashSet<Integer> values = new HashSet<>();
   private final List<Integer> sizeChecker = new ArrayList<>();
   private final StringBuilder result = new StringBuilder();
+  private final ArrayList<Integer> dataAsList;
 
 
 
@@ -31,36 +32,23 @@ public class Fifteenth {
    }
 
    public boolean canItSolve() {
-       int count = 0, transPos = 0, value;
-       int[] tester = new int[17];
-       boolean canDoIt = false;
+       int sumChecker = 0;
+       int zPlace = 0;
 
-       for (int i = 0; i < 4; i++) {
-           if (i % 2 == 0) {
-               for (int j = 0; j < 4; j++) {
-                   value = board[i][j];
-                   if (value > 0) {
-                       tester[count] = value;
-                       count++;
-                   }
-               }
-           } else
-               for (int j = 3; j >= 0; j--) {
-                   value = board[i][j];
+       for (int i = 0; i < 16; i++) {
+           if (dataAsList.get(i) == 0) {
+               zPlace = (i / 4) + 1;
+               continue;
+           }
 
-                   if (value > 0) {
-                       tester[count] = value;
-                       count++;
-                   }
-               }
-       }
-       for (int i = 0; i <= count - 2; i++) {
-           for (int j = i + 1; j <= count - 1; j++)
-               if (tester[i] > tester[j]) transPos++;
+           for (int j = i + 1; j < 16; j++) {
+               if (dataAsList.get(j) == 0) continue;
+               if (dataAsList.get(i) > dataAsList.get(j)) sumChecker++;
+           }
        }
 
-      if (transPos % 2 == 1) canDoIt = true;
-      return canDoIt;
+       sumChecker += zPlace;
+       return (sumChecker % 2 == 0);
    }
 
    private int outlay() {
@@ -130,7 +118,7 @@ public class Fifteenth {
                    }
                }
            step = 0;
-                res = search(0, -1, x0, y0);
+               res = search(0, -1, x0, y0);
                deep = minPrevIter;
 
                if (res) break;
@@ -147,6 +135,7 @@ public class Fifteenth {
        xF[0] = 4;
        yF[0] = 4;
 
+       dataAsList = digits;
        values.addAll(digits);
        sizeChecker.addAll(digits);
 
